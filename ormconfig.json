@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "node_react_financeiro",
+  "synchronize": false,
+  "loggin": false,
+  "entities": [
+    "./app/domain/models/database/*.{js,ts}"
+  ],
+  "migrations": [
+    "./app/data/infrastructure/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./app/data/infrastructure/database/migrations"
+  }
+}

@@ -1,0 +1,33 @@
+====== TDD ======
+	"@types/chai": "^4.2.14",
+  "@types/mocha": "^8.0.4",
+  "@types/supertest": "^2.0.10",
+  "chai": "^4.2.0",
+  "mocha": "^8.2.1",
+  "supertest": "^6.0.1",
+
+====== Arquitetura ======
+data
+	infrastructure*
+		*db
+		*config
+	respositories*
+
+domain
+	models*
+	usecases*
+	services*
+
+presentation
+	controllers*
+	middlewares*
+	routes*
+
+common
+  errors*
+	helpers*
+
+====== TypeORM ======
+npm run typeorm migration:create -n create-users
+
+npm run typeorm migration:run
