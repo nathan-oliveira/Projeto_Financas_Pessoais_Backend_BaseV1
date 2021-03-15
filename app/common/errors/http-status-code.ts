@@ -5,5 +5,5 @@ export enum HttpStatusCode {
   notFound = 404,
   forbidden = 403,
   serverError = 500,
-  badGatewat = 502
+  badGatewat = 502,
 }

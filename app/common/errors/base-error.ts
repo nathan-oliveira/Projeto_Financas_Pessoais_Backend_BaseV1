@@ -1,10 +1,10 @@
-import { HttpStatusCode } from "./http-status-code"
+import { HttpStatusCode } from "./http-status-code";
 
 export abstract class BaseError extends Error {
   public readonly name: string;
   public readonly httpStatusCode: HttpStatusCode;
 
-  constructor (name: string, httpStatusCode: HttpStatusCode, message: string) {
+  constructor(name: string, httpStatusCode: HttpStatusCode, message: string) {
     super(message);
     Object.setPrototypeOf(this, new.target.prototype);
 

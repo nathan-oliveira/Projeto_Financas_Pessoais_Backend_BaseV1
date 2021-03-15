@@ -1,8 +1,6 @@
-import { createConnection } from "typeorm"
+import { createConnection } from "typeorm";
 
-import {
-  UserDAO
-} from "@app/domain/models"
+import { UserDAO } from "@app/domain/models";
 
 const Connection = createConnection({
   database: "node_react_financeiro",
@@ -13,7 +11,7 @@ const Connection = createConnection({
   port: 3306,
   synchronize: false,
   type: "mysql",
-  username: "root"
-})
+  username: "root",
+});
 
 export default Connection;

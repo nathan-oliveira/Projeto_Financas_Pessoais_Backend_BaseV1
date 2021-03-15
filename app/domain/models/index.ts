@@ -1,5 +1,3 @@
-import UserDAO from "./database/user-dao"
+import UserDAO from "./database/user-dao";
 
-export {
-  UserDAO
-}
+export { UserDAO };

@@ -1,19 +1,18 @@
-import { Router } from "express"
-import UserRoutes from './user-router'
+import { Router } from "express";
+import UserRoutes from "./user-router";
 
 class Routes {
-  public routes: Router
-  public userRouter: UserRoutes
+  public routes: Router;
+  public userRouter: UserRoutes;
 
   constructor() {
-    this.routes = Router()
-    this.userRouter = new UserRoutes(this.routes)
+    this.routes = Router();
+    this.userRouter = new UserRoutes(this.routes);
   }
 
   index = () => {
-    return this.routes
-      .use("/api", this.userRouter.createRoute())
-  }
+    return this.routes.use("/api", this.userRouter.createRoute());
+  };
 }
 
-export default new Routes()
+export default new Routes();

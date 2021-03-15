@@ -1,66 +1,64 @@
-import { HttpStatusCode } from "@app/common/errors/http-status-code"
+import { HttpStatusCode } from "@app/common/errors/http-status-code";
 
 export class HttpResult {
-
-  static ok (body: any) {
+  static ok(body: any) {
     return {
       statusCode: HttpStatusCode.ok,
-      body
-    }
+      body,
+    };
   }
 
-  static badRequest (error: any) {
+  static badRequest(error: any) {
     return {
       statusCode: HttpStatusCode.badRequest,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
 
-  static unauthorizedError (error: any) {
+  static unauthorizedError(error: any) {
     return {
       statusCode: HttpStatusCode.unauthorized,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
 
-  static serverError (error: any) {
+  static serverError(error: any) {
     return {
       statusCode: HttpStatusCode.serverError,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
 
-  static badGatewat (error: any) {
+  static badGatewat(error: any) {
     return {
       statusCode: HttpStatusCode.badGatewat,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
 
-  static forbidden (error: any) {
+  static forbidden(error: any) {
     return {
       statusCode: HttpStatusCode.forbidden,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
 
-  static notFound (error: any) {
+  static notFound(error: any) {
     return {
       statusCode: HttpStatusCode.notFound,
       body: {
-        error: error.message
-      }
-    }
+        error: error.message,
+      },
+    };
   }
-
 }

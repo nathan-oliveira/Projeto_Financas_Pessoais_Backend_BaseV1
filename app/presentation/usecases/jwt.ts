@@ -4,10 +4,10 @@ export type IJwT = {
   email: string;
   nivel: string;
   foto: string;
-}
+};
 
 export type IJwTPayload = {
   id: number;
   iat: number;
   exp: number;
-}
+};
