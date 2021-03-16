@@ -1,16 +1,16 @@
 import { EntityRepository, Repository } from "typeorm";
 
 import { UserDAO } from "@app/domain/models";
-import { IUser } from "@app/presentation/usecases";
+import { IUser, IUserCreate } from "@app/presentation/usecases";
 
 @EntityRepository(UserDAO)
 class UserRepository extends Repository<UserDAO> {
-  createUser = async (dataForm: IUser): Promise<object> => {
-    const usuario = await this.getUserByEmail(dataForm.email);
+  createUser = async (dataForm: IUser): Promise<IUserCreate> => {
+    const result = await this.getUserByEmail(dataForm.email);
 
-    if (usuario.length === 0) {
+    if (result.length === 0) {
       const { name, email, active, nivel } = await this.manager.save(UserDAO, dataForm);
-      return { name, email, active, nivel };
+      return { name, email, active, nivel } as IUserCreate;
     } else {
       throw new Error("E-mail informado já está cadastrado!");
     }
@@ -18,6 +18,14 @@ class UserRepository extends Repository<UserDAO> {
 
   getUserByEmail = async (email: string): Promise<UserDAO[]> => {
     return await this.manager.find(UserDAO, { where: { email } });
+  };
+
+  getUserById = async (id: number): Promise<UserDAO[]> => {
+    return await this.manager.find(UserDAO, { where: { id } });
+  };
+
+  updateUser = async (id: number, dataForm: object): Promise<object> => {
+    return await this.manager.update(UserDAO, { id }, dataForm);
   };
 }
 

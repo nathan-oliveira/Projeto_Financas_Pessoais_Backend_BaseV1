@@ -3,8 +3,8 @@ import { HttpResult } from "@app/common/helpers/http-result";
 
 import { User, IUserId } from "@app/domain/usecases";
 import { UserService } from "@app/domain/services";
-import { IUserRequestCreate, IUserRequestLogin } from "@app/presentation/usecases";
 import { BCrypt } from "@app/presentation/middlewares";
+import { IUserRequestCreate, IUserRequestLogin } from "@app/presentation/usecases";
 
 class UserController implements User {
   createUser = async (http: HttpRequest): Promise<HttpResponse> => {
@@ -12,12 +12,7 @@ class UserController implements User {
 
     try {
       const passwordHash = await BCrypt.CreatePasswordHash(password, password_confirmation);
-      const result = await UserService.save({
-        name,
-        email,
-        password: passwordHash,
-        foto: "",
-      });
+      const result = await UserService.save({ name, email, password: passwordHash, foto: "" });
 
       return HttpResult.ok(result);
     } catch (err) {
@@ -40,8 +35,25 @@ class UserController implements User {
 
   profile = async (http: HttpRequest): Promise<HttpResponse> => {
     const { userId } = (http.req as unknown) as IUserId;
+    const user = await UserService.getUserById(userId);
 
-    return HttpResult.ok({ userId });
+    return HttpResult.ok(user);
+  };
+
+  update = async (http: HttpRequest): Promise<HttpResponse> => {
+    const { userId } = (http.req as unknown) as { userId: number };
+    const { password, password_confirmation } = http.req.body;
+
+    if (password) {
+      http.req.body.password = await BCrypt.CreatePasswordHash(password, password_confirmation);
+    }
+
+    try {
+      const result = await UserService.updateUser(userId, http.req.body);
+      return HttpResult.ok(result);
+    } catch (err) {
+      return HttpResult.badRequest(err);
+    }
   };
 }
 
