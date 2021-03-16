@@ -2,8 +2,9 @@ import "reflect-metadata";
 import "./env";
 import "express-async-errors";
 
+import bp from "body-parser";
+import compression from "compression";
 import express from "express";
-import * as bp from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -29,6 +30,7 @@ class Server {
     this.server.ChangeMiddleware(morgan("combined"));
     this.server.ChangeMiddleware(bp.urlencoded({ extended: true }));
     this.server.ChangeMiddleware(bp.json({ limit: "20mb" }));
+    this.server.ChangeMiddleware(compression());
     this.server.ChangeMiddleware(routes.index());
     this.server.ChangeMiddleware(errorHandler.handler);
   }
