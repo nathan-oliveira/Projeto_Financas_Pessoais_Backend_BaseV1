@@ -1,6 +1,5 @@
 import { HttpRequest, HttpResponse } from "@app/domain/usecases";
 import { HttpResult } from "@app/common/helpers/http-result";
-
 import { User, IUserId } from "@app/domain/usecases";
 import { UserService } from "@app/domain/services";
 import { BCrypt } from "@app/presentation/middlewares";
@@ -21,6 +20,7 @@ class UserController implements User {
   };
 
   login = async (http: HttpRequest): Promise<HttpResponse> => {
+    console.log("login");
     const { email, password } = http.req.body as IUserRequestLogin;
 
     try {

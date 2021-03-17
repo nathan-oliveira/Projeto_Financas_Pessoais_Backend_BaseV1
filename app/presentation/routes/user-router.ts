@@ -1,12 +1,13 @@
+import { Router } from "express";
 import { RouterAdapter } from "@app/common/adapters";
 import { UserController } from "@app/presentation/controllers";
 import JwT from "@app/presentation/middlewares/jsonwebtoken";
 
 class UserRouter {
-  public router: any;
+  public router: Router;
 
-  constructor(routes: any) {
-    this.router = routes;
+  constructor() {
+    this.router = Router();
   }
 
   createRoute = () => {

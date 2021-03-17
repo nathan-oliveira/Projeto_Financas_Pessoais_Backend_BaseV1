@@ -12,6 +12,9 @@ import App from "./app";
 import errorHandler from "@app/common/errors/error-handler";
 import routes from "@app/presentation/routes";
 
+import fs from "fs";
+import path from "path";
+
 class Server {
   public http: express.Application;
   public routes: express.Router;
@@ -21,7 +24,21 @@ class Server {
     this.http = express();
     this.routes = express.Router();
     this.server = new App(this.http);
+
     this.middleware();
+  }
+
+  public routerAdapter() {
+    fs.readdir("./app/presentation/routes", async (err, paths) => {
+      for (let filePath of paths) {
+        if (filePath !== "index.ts") {
+          const route = await import(path.resolve("./app/presentation/routes/" + filePath));
+          const controller = await new route.default();
+          const routerBind = await controller.createRoute();
+          this.routes.use("/", routerBind);
+        }
+      }
+    });
   }
 
   private middleware(): void {
@@ -31,7 +48,10 @@ class Server {
     this.server.ChangeMiddleware(bp.urlencoded({ extended: true }));
     this.server.ChangeMiddleware(bp.json({ limit: "20mb" }));
     this.server.ChangeMiddleware(compression());
-    this.server.ChangeMiddleware(routes.index());
+
+    this.routerAdapter();
+    this.server.ChangeMiddleware(this.routes);
+
     this.server.ChangeMiddleware(errorHandler.handler);
   }
 }

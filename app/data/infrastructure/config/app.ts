@@ -1,7 +1,7 @@
 import { Application } from "express";
 import Connection from "@app/data/infrastructure/database";
 
-export default class App {
+class App {
   constructor(private http: Application) {}
 
   ChangeMiddleware(middleware: any): void {
@@ -22,3 +22,5 @@ export default class App {
     return this.http;
   }
 }
+
+export default App;

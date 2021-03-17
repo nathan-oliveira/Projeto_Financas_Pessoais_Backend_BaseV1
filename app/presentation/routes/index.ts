@@ -7,11 +7,11 @@ class Routes {
 
   constructor() {
     this.routes = Router();
-    this.userRouter = new UserRoutes(this.routes);
+    // this.userRouter = new UserRoutes(this.routes);
   }
 
   index = () => {
-    return this.routes.use("/api", this.userRouter.createRoute());
+    //return this.routes.use("/api", this.userRouter.createRoute());
   };
 }
 
