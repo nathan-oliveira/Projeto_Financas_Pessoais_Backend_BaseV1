@@ -33,9 +33,8 @@ class Server {
       for (let filePath of paths) {
         if (filePath !== "index.ts") {
           const route = await import(path.resolve("./app/presentation/routes/" + filePath));
-          const controller = await new route.default();
-          const routerBind = await controller.createRoute();
-          this.routes.use("/", routerBind);
+          const createRoute = await new route.default(this.routes);
+          this.routes.use("/", createRoute);
         }
       }
     });
