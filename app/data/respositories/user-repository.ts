@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from "typeorm";
 
 import { UserDAO } from "@app/domain/models";
-import { IUser, IUserCreate } from "@app/presentation/usecases";
+import { IUser, IUserCreate, IUserRequestUpdate } from "@app/presentation/usecases";
 
 @EntityRepository(UserDAO)
 class UserRepository extends Repository<UserDAO> {
@@ -24,8 +24,12 @@ class UserRepository extends Repository<UserDAO> {
     return await this.manager.find(UserDAO, { where: { id } });
   };
 
-  updateUser = async (id: number, dataForm: object): Promise<object> => {
+  updateUser = async (id: number, dataForm: IUserRequestUpdate): Promise<object> => {
     return await this.manager.update(UserDAO, { id }, dataForm);
+  };
+
+  updateFoto = async (id: number, foto: string): Promise<object> => {
+    return await this.manager.update(UserDAO, { id }, { foto });
   };
 }
 

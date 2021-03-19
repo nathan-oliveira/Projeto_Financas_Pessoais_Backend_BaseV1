@@ -9,6 +9,7 @@ import {
   IUserRequestLogin,
   IUserCreate,
   IUserRequestUpdate,
+  IUserUpdateFoto,
 } from "@app/presentation/usecases";
 
 class UserService {
@@ -46,6 +47,16 @@ class UserService {
 
     const result: any = await getCustomRepository(UserRepository).updateUser(id, dataForm);
     if (result.affected !== 1) throw new Error("Não foi possível atualizar o usuário!");
+
+    return await this.getUserById(id);
+  }
+
+  static async updateFoto(id: number, dataForm: IUserUpdateFoto) {
+    await this.getUserById(id);
+    if (!dataForm.foto) throw new Error("Favor preencha o campo 'Foto'!");
+
+    const result: any = await getCustomRepository(UserRepository).updateFoto(id, dataForm.foto);
+    if (result.affected !== 1) throw new Error("Não foi possível atualizar a imagem!");
 
     return await this.getUserById(id);
   }

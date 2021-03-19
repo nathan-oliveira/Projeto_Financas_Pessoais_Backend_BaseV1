@@ -27,25 +27,14 @@ class Server {
     this.middleware();
   }
 
-  public routerAdapter() {
-    fs.readdir("./app/presentation/routes", async (err, paths) => {
-      for (let filePath of paths) {
-        const route = await import(path.resolve("./app/presentation/routes/" + filePath));
-        const createRoute = await new route.default(this.routes);
-        this.routes.use("/api", createRoute);
-      }
-    });
-  }
-
-  private middleware(): void {
+  private async middleware(): Promise<void> {
     this.server.Connection();
     this.server.ChangeMiddleware(cors());
     this.server.ChangeMiddleware(morgan("combined"));
     this.server.ChangeMiddleware(bp.urlencoded({ extended: true }));
     this.server.ChangeMiddleware(bp.json({ limit: "20mb" }));
     this.server.ChangeMiddleware(compression());
-
-    this.routerAdapter();
+    await this.server.ChangeRouterLoaderAdapter(this.routes);
     this.server.ChangeMiddleware(this.routes);
 
     this.server.ChangeMiddleware(errorHandler.handler);

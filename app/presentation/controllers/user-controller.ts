@@ -20,7 +20,6 @@ class UserController implements User {
   };
 
   login = async (http: HttpRequest): Promise<HttpResponse> => {
-    console.log("login");
     const { email, password } = http.req.body as IUserRequestLogin;
 
     try {
@@ -50,6 +49,17 @@ class UserController implements User {
 
     try {
       const result = await UserService.updateUser(userId, http.req.body);
+      return HttpResult.ok(result);
+    } catch (err) {
+      return HttpResult.badRequest(err);
+    }
+  };
+
+  updateFoto = async (http: HttpRequest): Promise<HttpResponse> => {
+    const { userId } = (http.req as unknown) as { userId: number };
+
+    try {
+      const result = await UserService.updateFoto(userId, http.req.body);
       return HttpResult.ok(result);
     } catch (err) {
       return HttpResult.badRequest(err);

@@ -40,3 +40,7 @@ export type IUserRequestLogin = {
   email: string;
   password: string;
 };
+
+export type IUserUpdateFoto = {
+  foto: string;
+};

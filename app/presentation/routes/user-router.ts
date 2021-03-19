@@ -8,7 +8,8 @@ class UserRouter {
       .post("/users", RouterAdapter.adapt(UserController.createUser))
       .post("/session", RouterAdapter.adapt(UserController.login))
       .get("/profile", JwT.checkToken, RouterAdapter.adapt(UserController.profile))
-      .put("/users", JwT.checkToken, RouterAdapter.adapt(UserController.update));
+      .put("/users", JwT.checkToken, RouterAdapter.adapt(UserController.update))
+      .patch("/profile", JwT.checkToken, RouterAdapter.adapt(UserController.updateFoto));
   }
 }
 
