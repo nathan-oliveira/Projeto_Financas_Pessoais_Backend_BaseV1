@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { UserDAO } from "@app/domain/models";
-import { UserRepository } from "@app/data/respositories";
+import { UserRepository } from "@app/data/repositories";
 import {
   IUser,
   IUserProfile,

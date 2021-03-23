@@ -1,6 +1,6 @@
 import { RouterAdapter } from "@app/common/adapters";
 import { UserController } from "@app/presentation/controllers";
-import JwT from "@app/presentation/middlewares/jsonwebtoken";
+import { JwT } from "@app/presentation/middlewares";
 
 class UserRouter {
   constructor(routes: any) {

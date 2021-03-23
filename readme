@@ -11,7 +11,7 @@ data
 	infrastructure*
 		*db
 		*config
-	respositories*
+	repositories*
 
 domain
 	models*
@@ -27,7 +27,10 @@ common
   errors*
 	helpers*
 
-====== TypeORM ======
-npm run typeorm migration:create -n create-users
+====== TypeORM Create Migration======
+npm install npx -g
 
-npm run typeorm migration:run
+npx typeorm migration:create -n create-users
+npx typeorm migration:create -n create-category
+
+npx typeorm migration:run

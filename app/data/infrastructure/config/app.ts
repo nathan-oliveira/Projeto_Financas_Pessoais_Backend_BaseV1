@@ -12,9 +12,13 @@ class App {
   }
 
   ChangeRouterLoaderAdapter(router: any) {
-    fs.readdir("./app/presentation/routes", async (err, paths) => {
+    const pathRouter = `./${
+      process.env.PRODUCTION === "true" ? "dist" : "app"
+    }/presentation/routes/`;
+
+    fs.readdir(pathRouter, async (err, paths) => {
       for (let filePath of paths) {
-        const route = await import(path.resolve("./app/presentation/routes/" + filePath));
+        const route = await import(path.resolve(pathRouter + filePath));
         const createRoute = await new route.default(router);
         router.use("/api", createRoute);
       }

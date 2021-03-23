@@ -1,4 +1,2 @@
-import BCrypt from "./bcrypt";
-import JwT from "./jsonwebtoken";
-
-export { BCrypt, JwT };
+export * from "./bcrypt";
+export * from "./jsonwebtoken";

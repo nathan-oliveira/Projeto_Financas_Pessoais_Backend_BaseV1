@@ -7,7 +7,7 @@
     "build": "tsc && babel dist -d dist",
     "production": "node dist/index.js",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules -r tsconfig-paths/register app/index.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "node ./node_modules/typeorm/cli.js"
   },
   "author": "nathan_oliveiramendonca@hotmail.com",
   "license": "ISC",
@@ -21,11 +21,11 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
-    "tscpaths": "0.0.9",
     "typeorm": "^0.2.31"
   },
   "devDependencies": {
@@ -39,6 +39,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
+    "@types/helmet": "^4.0.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.31",

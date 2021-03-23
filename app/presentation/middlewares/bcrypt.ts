@@ -1,7 +1,7 @@
 import * as bcrypt from "bcrypt";
-import { JwT } from ".";
+import { JwT } from "./jsonwebtoken";
 
-class BCrypt {
+export class BCrypt {
   static async CreatePasswordHash(
     password: string,
     password_confirmation: string
@@ -24,5 +24,3 @@ class BCrypt {
     return JwT.createToken(user);
   }
 }
-
-export default BCrypt;

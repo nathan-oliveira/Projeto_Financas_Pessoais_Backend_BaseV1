@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { HttpResult } from "@app/common/helpers/http-result";
 import { IJwT, IJwTPayload } from "@app/presentation/usecases";
 
-class JsonWebToken {
+export class JwT {
   static async createToken(dataForm: IJwT): Promise<object> {
     const { id, name, email, nivel, foto } = dataForm;
 
@@ -31,5 +31,3 @@ class JsonWebToken {
     }
   }
 }
-
-export default JsonWebToken;
