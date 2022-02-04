@@ -1,7 +1,7 @@
-import { HttpRequest, HttpResponse } from "@app/domain/usecases";
+import { HttpRequest, HttpResponse, Category } from "@app/domain/usecases";
 import { HttpResult } from "@app/common/helpers/http-result";
 
-class CategoryController {
+class CategoryController implements Category {
   getCategory = async (http: HttpRequest): Promise<HttpResponse> => {
     return HttpResult.ok({ result: "Sim" });
   };

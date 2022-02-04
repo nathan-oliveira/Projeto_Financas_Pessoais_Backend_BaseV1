@@ -1,6 +1,5 @@
-import { HttpRequest, HttpResponse } from "@app/domain/usecases";
+import { HttpRequest, HttpResponse, User, IUserId  } from "@app/domain/usecases";
 import { HttpResult } from "@app/common/helpers/http-result";
-import { User, IUserId } from "@app/domain/usecases";
 import { UserService } from "@app/domain/services";
 import { BCrypt } from "@app/presentation/middlewares";
 import { IUserRequestCreate, IUserRequestLogin } from "@app/presentation/usecases";

@@ -35,7 +35,6 @@ class Server {
     this.server.ChangeMiddleware(compression());
     this.server.ChangeRouterLoaderAdapter(this.routes);
     this.server.ChangeMiddleware(this.routes);
-
     this.server.ChangeMiddleware(errorHandler.handler);
   }
 }

@@ -7,7 +7,7 @@
     "build": "tsc && babel dist -d dist",
     "production": "node dist/index.js",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules -r tsconfig-paths/register app/index.ts",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "author": "nathan_oliveiramendonca@hotmail.com",
   "license": "ISC",
